@@ -3,10 +3,10 @@ while (not numero.isdigit()):
     numero = input("introduzca una cantidad válida: ")
 
 unidad = input("introduzca una unidad de medida: ")
-unidades_validas = {"milímetros", "centímetros", "metros", "kilómetros"}
+unidades_validas = ["milímetros", "centímetros", "metros", "kilómetros"]
 cadena_unidades = ', '.join(unidades_validas)
 
-while unidad not in(unidades_validas):
+while unidad not in unidades_validas:
     print(unidad + " no es una unidad valida, las unidades validas son " + cadena_unidades)
     unidad = input("introduzca una unidad de medida: ")
 
@@ -33,5 +33,5 @@ match unidad_conversion:
     case unidad_conversion if unidad_conversion == unidades_validas [3]:
         numero = numero/1000000
 
-print(numero + " " + unidad_conversion)
+print(str(numero) + " " + unidad_conversion)
  
