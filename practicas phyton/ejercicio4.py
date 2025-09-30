@@ -1,6 +1,6 @@
-base = input("introduzca el tamaño de la base dela pirámide")
+base = input("introduzca el tamaño de la base dela pirámide: ")
 while (not base.isdigit()):
-    base = input("introduzca un número válido")
+    base = input("introduzca un número válido: ")
 base = int(base)
 if (base%2 == 0):
     contador = 2

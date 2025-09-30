@@ -2,9 +2,9 @@ numeros = []
 numero_pequeno = 0
 numero_grande = 0
 while (len(numeros) < 5):
-    numero = input("introduzca un numero")
+    numero = input("introduzca un numero: ")
     while (not numero.isdigit()):
-        numero = input("introduzca un número válido")
+        numero = input("introduzca un número válido: ")
     if(len(numeros) == 0):
         numero_pequeno = numero
         numero_grande = numero
