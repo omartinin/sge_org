@@ -20,3 +20,5 @@ while (numero != numero_correcto):
             print("!Has acertado¡")
 
 
+
+

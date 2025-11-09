@@ -9,10 +9,9 @@ for numeros in lista:
         suma += numero
         if len(columnas) > i:
             columnas[i] += numero
-            i += 1
         else:
             columnas.append(numero)
-            i += 1
+        i+=1
     filas.append(suma)
     suma = 0
     i = 0

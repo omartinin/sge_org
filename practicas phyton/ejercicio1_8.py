@@ -12,7 +12,7 @@ c_maquina = 0
 c_jugador = 0
 
 while (c_maquina < 5 and c_jugador < 5):
-    i = randint(0, 5)-1
+    i = randint(0, 4)
     eleccion_maquina = elecciones_validas[i]
 
 
@@ -59,4 +59,3 @@ while (c_maquina < 5 and c_jugador < 5):
             else:
                 print(eleccion + " gana a " + eleccion_maquina)
                 c_jugador+=1
-

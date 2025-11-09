@@ -1,6 +1,6 @@
 
 frase = input("Introduzca una frase: ")
-palabras = frase.split()
+palabras = frase.split(" ")
 
 frase_camel = palabras[0].lower() + ''.join(p.capitalize() for p in palabras[1:])
 

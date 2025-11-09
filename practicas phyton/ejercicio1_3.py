@@ -1,8 +1,7 @@
-base = input("introduzca el tamaño de la base del triángulo: ")
-while (not base.isdigit()):
-    base = input("introduzca un número válido: ")
-base = int(base)
-contador = 1
-while (contador <= base):
-    print("*"*contador)
-    contador+=1
+final = input("introduzca un número: ")
+while (not final.isdigit()):
+    final = input("Introduzca un número válido: ")
+final = int(final)
+
+for i in range(1, final + 1):
+    print("*" * i)

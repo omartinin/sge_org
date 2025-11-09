@@ -14,6 +14,6 @@ for nombre in nombres:
             posicion = letras.index(letra)
             ocurrencias[posicion] += 1
 
-
-for i in range(len(letras)):
-    print(f"{letras[i]}: {ocurrencias[i]}")
+combinado = dict(sorted(zip(letras, ocurrencias)))
+for clave, valor in combinado.items():
+    print(f"{clave}: {valor}")
