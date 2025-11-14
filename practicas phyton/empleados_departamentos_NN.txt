@@ -1,0 +1,112 @@
+CREATE TABLE departamentos (
+    cod_dpto int PRIMARY KEY NOT NULL,
+    localidad_dpto VARCHAR(50),
+    nombre_dpto VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE empleados (
+    cod_empleado int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    nombre_empleado VARCHAR(20) NOT NULL,
+    apellidos_empleado VARCHAR(30) NOT NULL,
+    edad int
+);
+
+CREATE TABLE departamentos_empleados (
+    cod_empleado INT NOT NULL,
+    cod_dpto INT NOT NULL,
+    PRIMARY KEY (cod_empleado, cod_dpto),
+    FOREIGN KEY (cod_empleado) REFERENCES empleados(cod_empleado),
+    FOREIGN KEY (cod_dpto) REFERENCES departamentos(cod_dpto)
+);
+
+package com.empresa.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "empleados")
+public class Empleado {
+
+    @Id
+    @GeneratedValue(strategy = generationType.IDENTITY)
+    @Column(name = "cod_empleado", nullable = false)
+    private int codEmpleado;
+
+    @Column(name = "nombre_empleado", length = 20, nullable = false)
+    private String nombreEmpleado;
+
+    @Column(name = "apellidos_empleado", length = 30, nullable = false)
+    private String apellidosEmpleado;
+
+    private int edad;
+
+    @ManyToMany
+    @JoinTable(
+        name = "departamentos_empleados",
+        joinColumns = @JoinColumn(name = "cod_empleado")
+        inverseJoinColumns = @JoinColumn(name = cod_dpto)
+    )
+    private Set<Departamento> departamentos = new HashSet<>();
+
+    // constructores, getters y setters
+
+    public Set<Departamento> getDepartamentos() {
+        return departamentos;
+    }
+
+    public void setDepartamentos(Set<Departamento> departamentos){
+        this.departamentos = departamentos;
+    }
+}
+
+package com.empresa.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "departamentos")
+public class Departamento {
+
+    @Id
+    @Column(name = "cod_dpto", nullable = false)
+    private int codDpto;
+
+    @Column(name = "localidad_dpto", length = 50)
+    private String localidadDpto;
+
+    @Column(name = "nombre_dpto", length = 50, nullable = false)
+    private String nombreDpto;
+
+    @ManyToMany(mappedBy = "departamentos")
+    private Set<Empleado> empleados = new HashSet<>();
+
+    //constructores, getters y setters
+
+    public Set<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Set<Empleado> empleados){
+        this.empleados = empleados;
+    }
+}
+
+cfg:
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+ "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-configuration3.0.dtd">
+    <hibernate-configuration>
+        <session-factory>
+            <property name = "hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+            <property name = "hibernate.connection.url">jdbc:mysql://localhost:3306/empresa</property>
+            <property name = "hibernate.connection.username">host</property>
+            <property name = "hibernate.connection.password"></property>
+            <property name = "hibernate.dialect">MySql8Dialect</property>
+            <property name = "show_sql">true</property>
+            <property name = "hibernate.hbm2ddl.auto">update</property>
+            <mapping class = "com.empresa.modelo.Departamento"/>
+            <mapping class = "com.empresa.modelo.Empleado"/>
+        </session-factory>
+    </hibernate-configuration>
