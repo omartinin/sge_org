@@ -1,0 +1,20 @@
+package com.empresa.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table("empleados")
+public class Empleado {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "cod_empleado", nullable = false)
+    private int codEmpleado;
+
+    @column(name = "nombre_empleado")
+    private String nombreEmpleado;
+
+    @Column(name = "apellido_empleado")
+    private String apellido_empleado
+    
+}
